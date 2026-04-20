@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Fih of Dih Day</title>
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <h1>Fish of the Day</h1>
+        <div id="fish-card">
+            <p>Loading...</p>
+        </div>
+        <script>
+            fetch("/api/fish-of-the-day").then(response => response.json()).then(data => {document.getElementById("fish-card").innerHTML = `
+                <h2>${data.common_name}</h2>
+                <h3><i>${data.scientific_name}</i></h3>
+                <img src="${data.image_url}" width="400">
+                <p><strong>Habitat:</strong> ${data.habitat}</p>
+                <p><strong>Max Length:</strong> ${data.max_length_cm} cm</p>
+                `;
+            }).catch(error => {
+                console.error("Error:", error);
+                document.getElementById("fish-card").innerHTML = "Error loading fih";
+            });
+        </script>
+    </body>
+</html>

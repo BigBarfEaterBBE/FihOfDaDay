@@ -1,0 +1,16 @@
+[
+  {
+    "common_name": "Clownfish",
+    "scientific_name": "Amphiprioninae",
+    "habitat": "Coral reefs in the Indo-Pacific",
+    "max_length_cm": 11,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Clownfish_in_the_Andaman_Coral_Reef.jpg"
+  },
+  {
+    "common_name": "Blue Tang",
+    "scientific_name": "Paracanthurus hepatus",
+    "habitat": "Tropical reef waters",
+    "max_length_cm": 31,
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Paracanthurus_hepatus.jpg"
+  }
+]

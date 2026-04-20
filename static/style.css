@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: aliceblue;
+    color: darkblue;
+}
+
+#fish-card {
+    background: #123d5a;
+    padding: 20px;
+    margin: 40px auto;
+    width: 500px;
+    border-radius: 12px;
+}
+
+img {
+    border-radius: 10px;
+    margin: 15px 0;
+}
