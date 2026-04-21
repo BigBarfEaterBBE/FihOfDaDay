@@ -28,6 +28,11 @@ clean_data <- data.frame(
     depth_shallow = species_df$DepthRangeShallow,
     depth_deep = species_df$DepthRangeDeep,
     water_type = mapply(get_water_type, species_df$Fresh, species_df$Saltwater),
+    fishbase_image = ifelse(
+        is.na(species_df$PicPreferredName),
+        NA,
+        paste0("https://www.fishbase.se/images/species/", species_df$PicPreferredName)
+    ),
     stringsAsFactors = FALSE
 )
 
@@ -56,6 +61,9 @@ clean_data <- clean_data[!is.na(clean_data$depth_range_m), ]
 # Remove rows with null max length
 clean_data <- clean_data[!is.na(clean_data$max_length_cm), ]
 
+# Remove rows with null images
+clean_data <- clean_data[!is.na(clean_data$fishbase_image), ]
+
 # Final dataset
 final_data <- data.frame(
   scientific_name = clean_data$scientific_name,
@@ -63,6 +71,7 @@ final_data <- data.frame(
   water_type = clean_data$water_type,
   depth_range_m = clean_data$depth_range_m,
   max_length_cm = clean_data$max_length_cm,
+  fishbase_image = clean_data$fishbase_image,
   stringsAsFactors = FALSE
 )
 
