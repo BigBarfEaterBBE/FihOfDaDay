@@ -1,12 +1,23 @@
+@font-face {
+    font-family: "SailingScribe";
+    src: url("SailingScribe-1jEYM.ttf") format("trueType");
+}
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: aliceblue;
-    color: darkblue;
+    background-color: #275199;
+    color: #7997e6;
+}
+
+h1 {
+    font-family: "SailingScribe", sans-serif;
+    color: #B8D8F1;
+    font-size: 60px;
 }
 
 #fish-card {
-    background: #123d5a;
+    background: #021460;
     padding: 20px;
     margin: 40px auto;
     width: 500px;

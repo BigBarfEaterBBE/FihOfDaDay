@@ -13,8 +13,9 @@
             fetch("/api/fish-of-the-day").then(response => response.json()).then(data => {document.getElementById("fish-card").innerHTML = `
                 <h2>${data.common_name}</h2>
                 <h3><i>${data.scientific_name}</i></h3>
-                <img src="${data.image_url}" width="400">
-                <p><strong>Habitat:</strong> ${data.habitat}</p>
+                <img src="${data.fishbase_image}" width="400">
+                <p><strong>Water Type:</strong> ${data.water_type}</p>
+                <p><strong>Depth:</strong> ${data.depth_range_m} m</p>
                 <p><strong>Max Length:</strong> ${data.max_length_cm} cm</p>
                 `;
             }).catch(error => {
