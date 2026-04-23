@@ -6,10 +6,54 @@
     </head>
     <body>
         <h1>Fish of the Day</h1>
+        <div id="jellyfish-container"></div>
         <div id="fish-card">
             <p>Loading...</p>
         </div>
+        <div id="overlay"></div>
         <script>
+            function spawnJellyfish() {
+                const container = document.getElementById("jellyfish-container");
+
+                const jelly = document.createElement("img");
+                // choose jelly color
+                const randomBinary = Math.floor(Math.random() * 2);
+                if (randomBinary == 0) {
+                    var jellyfishString = "light_blue_jellyfish.gif"
+                }
+                else {
+                    var jellyfishString = "dark_blue_jellyfish.gif"
+                }
+                jelly.src = "/static/" + jellyfishString;
+                jelly.className = "jellyfish";
+
+                // random x
+                jelly.style.left = Math.random() * 100 + "vw";
+
+                // random size jellyfish
+                const size = 40 + Math.random() * 60;
+                jelly.style.width = size + "px";
+
+                // random speed (Duration)
+                const duration = 8 + Math.random() * 10;
+                jelly.style.animationDuration = duration + "s";
+
+                container.appendChild(jelly);
+
+                // remove after animation done
+                setTimeout(() => {
+                    jelly.remove();
+                }, duration * 1000);
+            }
+
+            // spawn every 1-2 seconds
+            setInterval(() => {
+                spawnJellyfish();
+            }, 1000 + Math.random() * 1000);
+           
+
+
+
             fetch("/api/fish-of-the-day").then(response => response.json()).then(data => {document.getElementById("fish-card").innerHTML = `
                 <h2>${data.common_name}</h2>
                 <h3><i>${data.scientific_name}</i></h3>
