@@ -5,15 +5,52 @@
         <link rel="stylesheet" href="/static/style.css">
     </head>
     <body>
-        <audio id="bg-music" autoplay loop>
-            <source src="/static/04. pipo pipo.mp3" type="audio/mp3">
-        </audio>
         <img id="title-image" src="/static/title.PNG" alt="Fish of the Day">
         <div id="jellyfish-container"></div>
         <div id="fish-info">
             <p>Loading...</p>
         </div>
-        <button onclick="playMusic()">Play Music</button>
+        <div id="music-player">
+            <img id="player-image" src = "/static/empty_player.png">
+            <audio id="audio"></audio>
+        </div>
+        <script>
+            const player = document.getElementById("music-player");
+            const img = document.getElementById("player-image");
+            const audio = document.getElementById("audio");
+
+            const states = [
+                { img: "/static/empty_player.png", song: null },
+                { img: "/static/song_1.png", song: "/static/pipopipo.mp3" },
+                { img: "/static/song_3.png", song: "/static/love..mp3" },
+                { img: "/static/song_2.png", song: "/static/cute_circus.mp3" },
+                { img: "/static/song_4.png", song: "/static/bad.mp3" },
+            ];
+
+            let currentState = 0;
+
+            function updatePlayer() {
+                const state = states[currentState];
+                img.src = state.img;
+                if (state.song) {
+                    audio.src = state.song;
+                    audio.play().catch(() => {});
+                } else {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            }
+
+            player.addEventListener("click", () => {
+                currentState = (currentState + 1) % states.length;
+                updatePlayer();
+            });
+            audio.addEventListener("ended", () => {
+                currentState = (currentState + 1) % states.length;
+                if (currentState === 0) currentState = 1;
+                updatePlayer();
+            });
+        </script>
 
         <script>
         function playMusic() {
