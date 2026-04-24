@@ -1,6 +1,6 @@
 @font-face {
     font-family: "Happyline";
-    src: url("HAPPYLINE.ttf") format("opentype");
+    src: url("static/HAPPYLINE.ttf") format("opentype");
 }
 
 html, body {
@@ -11,7 +11,7 @@ html, body {
 }
 
 body {
-    background-image: url("background.png");
+    background-image: url("static/background.png");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -30,11 +30,6 @@ body {
 
 }
 
-h1 {
-    font-family: "SailingScribe", sans-serif;
-    color: #B8D8F1;
-    font-size: clamp(40px, 6vw, 80px);
-}
 
 #jellyfish-container {
     position: fixed;

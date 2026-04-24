@@ -100,7 +100,7 @@
 
 
 
-            fetch("./static/fish_data_clean.json").then(res => res.json()).then(data => {
+            fetch(".static/fish_data_clean.json").then(res => res.json()).then(data => {
                 const seed = new Date().toDateString();
                 let hash = 0;
                 for (let i = 0; i < seed.length; i++) {
@@ -108,12 +108,12 @@
                 }
                 const fish = data[hash];
                 document.getElementById("fish-info").innerHTML = `
-                    <h2>${data.common_name}</h2>
-                    <h3><i>${data.scientific_name}</i></h3>
-                    <img src="${data.fishbase_image}" width="400">
-                    <p><strong>Water Type:</strong> ${data.water_type}</p>
-                    <p><strong>Depth:</strong> ${data.depth_range_m} m</p>
-                    <p><strong>Max Length:</strong> ${data.max_length_cm} cm</p>
+                    <h2>${fish.common_name}</h2>
+                    <h3><i>${fish.scientific_name}</i></h3>
+                    <img src="${fish.fishbase_image}" width="400">
+                    <p><strong>Water Type:</strong> ${fish.water_type}</p>
+                    <p><strong>Depth:</strong> ${fish.depth_range_m} m</p>
+                    <p><strong>Max Length:</strong> ${fish.max_length_cm} cm</p>
                 `;
             });
         </script>
