@@ -5,12 +5,21 @@
         <link rel="stylesheet" href="/static/style.css">
     </head>
     <body>
-        <h1>Fish of the Day</h1>
+        <audio id="bg-music" autoplay loop>
+            <source src="/static/04. pipo pipo.mp3" type="audio/mp3">
+        </audio>
+        <img id="title-image" src="/static/title.PNG" alt="Fish of the Day">
         <div id="jellyfish-container"></div>
-        <div id="fish-card">
+        <div id="fish-info">
             <p>Loading...</p>
         </div>
-        <div id="overlay"></div>
+        <button onclick="playMusic()">Play Music</button>
+
+        <script>
+        function playMusic() {
+            document.getElementById("bg-music").play();
+        }
+        </script>
         <script>
             function spawnJellyfish() {
                 const container = document.getElementById("jellyfish-container");
@@ -54,7 +63,7 @@
 
 
 
-            fetch("/api/fish-of-the-day").then(response => response.json()).then(data => {document.getElementById("fish-card").innerHTML = `
+            fetch("/api/fish-of-the-day").then(response => response.json()).then(data => {document.getElementById("fish-info").innerHTML = `
                 <h2>${data.common_name}</h2>
                 <h3><i>${data.scientific_name}</i></h3>
                 <img src="${data.fishbase_image}" width="400">
@@ -64,7 +73,7 @@
                 `;
             }).catch(error => {
                 console.error("Error:", error);
-                document.getElementById("fish-card").innerHTML = "Error loading fih";
+                document.getElementById("fish-info").innerHTML = "Error loading fih";
             });
         </script>
     </body>
