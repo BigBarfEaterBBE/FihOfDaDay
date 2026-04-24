@@ -2,16 +2,16 @@
 <html>
     <head>
         <title>Fih of Dih Day</title>
-        <link rel="stylesheet" href="/static/style.css">
+        <link rel="stylesheet" href="static/style.css">
     </head>
     <body>
-        <img id="title-image" src="/static/title.PNG" alt="Fish of the Day">
+        <img id="title-image" src="static/title.PNG" alt="Fish of the Day">
         <div id="jellyfish-container"></div>
         <div id="fish-info">
             <p>Loading...</p>
         </div>
         <div id="music-player">
-            <img id="player-image" src = "/static/empty_player.png">
+            <img id="player-image" src = "static/empty_player.png">
             <audio id="audio"></audio>
         </div>
         <script>
@@ -20,11 +20,11 @@
             const audio = document.getElementById("audio");
 
             const states = [
-                { img: "/static/empty_player.png", song: null },
-                { img: "/static/song_1.png", song: "/static/pipopipo.mp3" },
-                { img: "/static/song_3.png", song: "/static/love..mp3" },
-                { img: "/static/song_2.png", song: "/static/cute_circus.mp3" },
-                { img: "/static/song_4.png", song: "/static/bad.mp3" },
+                { img: "static/empty_player.png", song: null },
+                { img: "static/song_1.png", song: "static/pipopipo.mp3" },
+                { img: "static/song_3.png", song: "static/love..mp3" },
+                { img: "static/song_2.png", song: "static/cute_circus.mp3" },
+                { img: "static/song_4.png", song: "static/bad.mp3" },
             ];
 
             let currentState = 0;
@@ -70,7 +70,7 @@
                 else {
                     var jellyfishString = "dark_blue_jellyfish.gif"
                 }
-                jelly.src = "/static/" + jellyfishString;
+                jelly.src = "static/" + jellyfishString;
                 jelly.className = "jellyfish";
 
                 // random x
@@ -100,17 +100,21 @@
 
 
 
-            fetch("/api/fish-of-the-day").then(response => response.json()).then(data => {document.getElementById("fish-info").innerHTML = `
-                <h2>${data.common_name}</h2>
-                <h3><i>${data.scientific_name}</i></h3>
-                <img src="${data.fishbase_image}" width="400">
-                <p><strong>Water Type:</strong> ${data.water_type}</p>
-                <p><strong>Depth:</strong> ${data.depth_range_m} m</p>
-                <p><strong>Max Length:</strong> ${data.max_length_cm} cm</p>
+            fetch("./static/fish_data_clean.json").then(res => res.json()).then(data => {
+                const seed = new Date().toDateString();
+                let hash = 0;
+                for (let i = 0; i < seed.length; i++) {
+                    hash = (hash * 31 + seed.charCodeAt(i)) % data.length;
+                }
+                const fish = data[hash];
+                document.getElementById("fish-info").innerHTML = `
+                    <h2>${data.common_name}</h2>
+                    <h3><i>${data.scientific_name}</i></h3>
+                    <img src="${data.fishbase_image}" width="400">
+                    <p><strong>Water Type:</strong> ${data.water_type}</p>
+                    <p><strong>Depth:</strong> ${data.depth_range_m} m</p>
+                    <p><strong>Max Length:</strong> ${data.max_length_cm} cm</p>
                 `;
-            }).catch(error => {
-                console.error("Error:", error);
-                document.getElementById("fish-info").innerHTML = "Error loading fih";
             });
         </script>
     </body>
