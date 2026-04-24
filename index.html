@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Fih of Dih Day</title>
-        <link rel="stylesheet" href="static/style.css">
+        <link rel="stylesheet" href="/FihOfDaDay/style.css">
     </head>
     <body>
         <img id="title-image" src="static/title.PNG" alt="Fish of the Day">
@@ -100,7 +100,7 @@
 
 
 
-            fetch(".static/fish_data_clean.json").then(res => res.json()).then(data => {
+            fetch("/FihOfDaDay/static/fish_data_clean.json").then(res => res.json()).then(data => {
                 const seed = new Date().toDateString();
                 let hash = 0;
                 for (let i = 0; i < seed.length; i++) {
